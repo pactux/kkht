@@ -6,7 +6,7 @@
 
 class Login_m extends CI_Model {
 	function checaUsuario($email, $senha) {
-		$usuario = $this->db->get_where("professor", array("email" => $email, "senha" => $senha));
+		$usuario = $this->db->get_where("professor", array('email' => $email, 'senha' => $senha, 'status' => 1));
 
 		if ($usuario->num_rows() == 1) {
 			return $usuario->row();
