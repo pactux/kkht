@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 				'matricula' => $checaUsuario->matricula,
 				'nome' => $checaUsuario->nome,
 				'email' => $checaUsuario->email,
-				'permissao' => $checaUsuario->permissao,
+				'permissao' => $checaUsuario->permissao_id,
 				'logado' => TRUE
 			);
 

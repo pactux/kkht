@@ -23,6 +23,12 @@ class Login_m extends CI_Model {
 			redirect(base_url(), "location", 301);
 		}
 	}
+
+	function checaPermissao($permissao) {
+		if ($permissao === '1') {
+			show_404();
+		}
+	}
 }
 
 ?>
