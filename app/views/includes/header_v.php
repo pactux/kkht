@@ -43,8 +43,8 @@
             <li class="dropdown" onclick="subMenu(this);">
               <a href="#" class="dropdown-toggle">Professores <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><?php echo anchor("", "Novo professor"); ?></li>
-                <li><?php echo anchor("", "Listar todos"); ?></li>
+                <li><?php echo anchor("professores/novo", "Novo professor"); ?></li>
+                <li><?php echo anchor("professores/lista", "Listar todos"); ?></li>
               </ul>
             </li>
 
