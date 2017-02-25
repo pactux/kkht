@@ -1,19 +1,15 @@
+<?php $mensagens = array('Ação realizada com sucesso!' => 'success', 'Erro ao realizar ação' => 'danger'); ?>
+
 <div class="container">
-	<h3><?php echo $titulo; ?></h3>
+	<h3><?= $titulo; ?></h3>
 
 	<div class="dist-topo"></div>
 
 	<!-- exibe alerta HTML -->
-	<?php if (isset($_GET['resposta'])): ?>
-		<?php if ($_GET['resposta'] == 'true'): ?>
-			<div class="alert alert-success fade in">
-				Ação realizada com sucesso! <a href='#' class='close' onclick="fechaAlerta(this);">&times;</a>
-			</div>
-		<?php else: ?>
-			<div class="alert alert-danger fade in">
-				Erro ao realizar ação <a href='#' class='close' onclick="fechaAlerta(this);">&times;</a>
-			</div>
-		<?php endif ?>
+	<?php if ($msg = array_search($resp, $mensagens)): ?>
+		<div class="alert alert-<?= $mensagens[$msg]; ?> fade in">
+			<?= $msg; ?> <a href='#' class='close' onclick="fechaAlerta(this);">&times;</a>
+		</div>
 	<?php endif ?>
 
 	<?php if ($request == 'cadastrar'): ?>
@@ -46,13 +42,13 @@
 				<?php foreach ($conteudo->result() as $exibe): ?>
 					<?php ($exibe->status == 0) ? $status = 'Inativo' : $status = 'Ativo'; ?>
 					<tr>
-						<td><?php echo $exibe->nome; ?></td>
-						<td><?php echo $status; ?></td>
+						<td><?= ucwords($exibe->nome); ?></td>
+						<td><?= $status; ?></td>
 						<td>
-							<?php if ($status == 'Ativo'): ?>
-								<a href="cursos/status?a=0&c=<?php echo $exibe->id; ?>" class="btn btn-warning btn-xs">inativar</a>
+							<?php if ($status === 'Ativo'): ?>
+								<a href="cursos/status?a=0&c=<?=$exibe->id; ?>" class="btn btn-warning btn-xs">inativar</a>
 							<?php else: ?>
-								<a href="cursos/status?a=1&c=<?php echo $exibe->id; ?>" class="btn btn-success btn-xs">ativar</a>
+								<a href="cursos/status?a=1&c=<?= $exibe->id; ?>" class="btn btn-success btn-xs">ativar</a>
 							<?php endif ?>
 						</td>
 					</tr>

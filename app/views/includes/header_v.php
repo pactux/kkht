@@ -51,8 +51,8 @@
             <li class="dropdown" onclick="subMenu(this);">
               <a href="#" class="dropdown-toggle">Cursos <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><?php echo anchor("cursos?acao=cadastrar", "Novo curso"); ?></li>
-                <li><?php echo anchor("cursos?acao=listar", "Listar todos"); ?></li>
+                <li><?php echo anchor("cursos?a=cadastrar", "Novo curso"); ?></li>
+                <li><?php echo anchor("cursos?a=listar", "Listar todos"); ?></li>
               </ul>
             </li>
           </ul>

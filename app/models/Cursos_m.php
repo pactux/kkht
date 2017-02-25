@@ -18,6 +18,10 @@ class Cursos_m extends CI_Model {
 		return $this->db->get_where('curso', array('status' => $status));
 	}
 
+	function listaCursoNome($id) {
+		return $this->db->get_where('curso', array('id' => $id), 1);
+	}
+
 	function altera($idCurso, $statusCurso) {
 		$this->db->update('curso', $statusCurso, array('id' => $idCurso));
 		return ($this->db->affected_rows() === 1) ? TRUE : FALSE;
