@@ -1,5 +1,4 @@
 // funcionamento do menu
-
 function menuMobile() {
   var $btMobile = document.getElementById('navbar');
 
@@ -25,7 +24,6 @@ function fechaAlerta($tag) {
 }
 
 // funcionamento dos campos de senha
-
 function comparaSenhas() {
   var $senha1 = document.getElementById('senha1');
   var $senha2 = document.getElementById('senha2');
@@ -73,4 +71,78 @@ function mostraSenha() {
     $senha2.removeAttribute('required');
   }
 
+}
+
+// alterna os campos de busca na seção 'Alunos'
+function campoPesquisaRapida($bt) {
+  var $form = document.getElementsByTagName('form');
+  var $select = document.getElementById('pes-curso');
+  var $input = document.getElementById('pes-rapida');
+
+  if ($input.parentNode.className === 'hidden') {
+    $select.parentNode.className = 'hidden';
+    $select.removeAttribute('required');
+
+    $input.parentNode.className = 'form-group show';
+    $input.placeholder = 'Digite o nome do Aluno';
+    $input.required = 'true';
+
+    $form[0].action = 'buscaalunonome';
+    $bt.innerText = 'Pesquisa por curso';
+
+  }
+  else {
+    $input.parentNode.className = 'hidden';
+    $input.removeAttribute('required');
+
+    $select.parentNode.className = 'form-group show';
+    $select.required = 'true';
+
+    $form[0].action = 'listaalunoscurso';
+    $bt.innerText = 'Pesquisa por aluno';
+  }
+}
+
+// Armazena os cursos a serem removidos
+function cursosRemovidos($tag) {
+  var $i = null, $desmarcar = null;
+  var $valor = $tag.getAttribute('value');
+  var $input = document.createElement('input');
+  var $divRemover = document.getElementById('remover');
+  var $classeInput = document.getElementsByClassName('remover');
+
+  if ($tag.getAttribute('checked') === 'true') {
+    $desmarcar = window.confirm('Remover curso?');
+
+    if ($desmarcar === false) {
+      $tag.checked = 'true';
+    }
+    else {
+      $tag.removeAttribute('checked');
+      $divRemover.style.visibility = 'hidden';
+
+      if ($divRemover.hasChildNodes()) {
+        if ($divRemover.lastChild.value === $valor) {
+          $divRemover.removeChild($divRemover.lastChild);
+        }
+      }
+
+      $input.type = 'checkbox';
+      $input.name = 'remover[]';
+      $input.checked = 'true';
+      $input.className = 'remover';
+      $input.value = $valor;
+
+      $divRemover.appendChild($input);
+    }
+  }
+  else {
+    $tag.setAttribute('checked', 'true');
+
+    for ($i = 0; $i < $divRemover.childNodes.length; $i += 1) {
+      if ($valor === $divRemover.childNodes[$i].getAttribute('value')) {
+        $divRemover.removeChild($divRemover.childNodes[$i]);
+      }
+    }
+  }
 }
