@@ -146,3 +146,29 @@ function cursosRemovidos($tag) {
     }
   }
 }
+
+// controla a marcação de todos os campos checkbox
+function marcarTodos($bt) {
+  var $i = null;
+  var $textoBotao = $bt.innerText.toLowerCase();
+  var $campoCheckbox = document.getElementsByClassName('check');
+
+  for ($i = 0; $i < $campoCheckbox.length; $i += 1) {
+    if ($campoCheckbox[$i].getAttribute('checked') === '') {
+      $campoCheckbox[$i].checked = '';
+      $campoCheckbox[$i].removeAttribute('checked');
+    }
+    else {
+      $campoCheckbox[$i].checked = 'true';
+      $campoCheckbox[$i].setAttribute('checked', '');
+    }
+  }
+
+  ($textoBotao === 'marcar todos') ? $bt.innerText = 'Desmarcar todos' : $bt.innerText = 'Marcar todos';
+}
+
+// confirma o envio do formulário
+function salvaChamada($form) {
+  $testa = window.confirm('Finalizar chamada?');
+  ($testa === true) ? $form.action = $form.action : $form.action = '#';
+}
