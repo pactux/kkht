@@ -1,0 +1,21 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.dist-topo {
+	margin-top: 2em;
+}
+
+.vermelho {
+	color: #ff0000;
+}
+
+.ativo {
+	background: lightblue;
+}
+
+.inativo {
+	background: lightcoral;
+}

@@ -6,11 +6,11 @@
     <meta name="robots" content="NOINDEX, NOFOLLOW">
     <meta name="author" content="pactux">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Título</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/patch.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/patch.css'); ?>" />
 
     <!-- JS -->
     <script type="text/javascript" src="<?php echo base_url('assets/js/global.js'); ?>"></script>
@@ -26,47 +26,52 @@
             <span class="icon-bar"></span>
           </button>
           
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#"><?= $this->usuario['nome']; ?></a>
         </div>
 
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><?php echo anchor('chamada', 'Chamada'); ?></li>
-            <li class="dropdown" onclick="subMenu(this);">
-              <a href="#" class="dropdown-toggle">Alunos <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><?php echo anchor("alunos/novo", "Novo aluno"); ?></li>
-                <li><?php echo anchor("alunos/listacursos", "Listar todos"); ?></li>
-              </ul>
-            </li>
+            <li><?= anchor('chamada', 'Chamada'); ?></li>
 
-            <li class="dropdown" onclick="subMenu(this);">
-              <a href="#" class="dropdown-toggle">Professores <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><?php echo anchor("professores/novo", "Novo professor"); ?></li>
-                <li><?php echo anchor("professores/lista", "Listar todos"); ?></li>
-              </ul>
-            </li>
+            <?php if ($this->usuario['permissao'] > 1): ?>
 
-            <li class="dropdown" onclick="subMenu(this);">
-              <a href="#" class="dropdown-toggle">Cursos <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><?php echo anchor("cursos?a=cadastrar", "Novo curso"); ?></li>
-                <li><?php echo anchor("cursos?a=listar", "Listar todos"); ?></li>
-              </ul>
-            </li>
+              <li class="dropdown" onclick="subMenu(this);">
+                <a href="#" class="dropdown-toggle">Alunos <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><?= anchor("alunos/novo", "Novo aluno"); ?></li>
+                  <li><?= anchor("alunos/listacursos", "Listar todos"); ?></li>
+                </ul>
+              </li>
 
-            <li class="dropdown" onclick="subMenu(this);">
-              <a href="#" class="dropdown-toggle">Resumo <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><?php echo anchor('resumo/busca?b=aluno', 'Por aluno'); ?></li>
-                <li><?php echo anchor('resumo/busca?b=periodo', 'Por período'); ?></li>
-              </ul>
-            </li>
+              <li class="dropdown" onclick="subMenu(this);">
+                <a href="#" class="dropdown-toggle">Professores <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><?= anchor("professores/novo", "Novo professor"); ?></li>
+                  <li><?= anchor("professores/lista", "Listar todos"); ?></li>
+                </ul>
+              </li>
+
+              <li class="dropdown" onclick="subMenu(this);">
+                <a href="#" class="dropdown-toggle">Cursos <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><?= anchor("cursos?a=cadastrar", "Novo curso"); ?></li>
+                  <li><?= anchor("cursos?a=listar", "Listar todos"); ?></li>
+                </ul>
+              </li>
+
+              <li class="dropdown" onclick="subMenu(this);">
+                <a href="#" class="dropdown-toggle">Resumo <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><?= anchor('resumo/busca?b=aluno', 'Por aluno'); ?></li>
+                  <li><?= anchor('resumo/busca?b=periodo', 'Por período'); ?></li>
+                </ul>
+              </li>
+
+            <?php endif ?>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><?php echo anchor("login/signOut", 'Sair', array('title' => 'Sair')); ?></li>
+            <li><?= anchor("login/signOut", 'Sair', array('title' => 'Sair')); ?></li>
           </ul>
         </div>
 

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="">
+    <meta name="robots" content="NOINDEX, NOFOLLOW">
+    <meta name="author" content="pactux">
 
-    <title>Kyorugui Kwan - Login</title>
+    <title>Login</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/login.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/login.css'); ?>" />
   </head>
 
   <body>
+    <noscript>
+      <style type="text/css"> .container { display: none; } </style>
+      <p>Habilite o JavaScript do browser</p>
+    </noscript>
+
     <div class="container">
       <form action="login/signIn" method="post" class="form-signin">
 
@@ -25,7 +29,7 @@
         <h2 class="form-signin-heading">Login</h2>
         <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus />
         <input type="password" name="senha" class="form-control" placeholder="Senha" required />
-        <button type="submit" class="btn btn-lg btn-success btn-block">Entrar</button>
+        <button type="submit" class="btn btn-success btn-block">Entrar</button>
       </form>
     </div>
   </body>
