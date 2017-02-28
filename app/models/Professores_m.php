@@ -75,22 +75,29 @@ class Professores_m extends CI_Model {
 	}
 
 	// edita o curso do professor
-	function editaCursoProfessor($cProfessor, $idProfessor) {
+	function editaCursoProfessor($cProfessor, $idProfessor, $remover) {
 		// procura curso x professor
 		$q = $this->db->get_where('curso_has_professor', array('curso_id' => $cProfessor, 'professor_matricula' => $idProfessor));
-		$p = array('curso_id' => $cProfessor, 'professor_matricula' => $idProfessor);
 
-		// checa se o professor pertence ao curso
-		if ($q->num_rows() === 0) {
-			$this->db->insert('curso_has_professor', $p);
-			return ($this->db->affected_rows() === 1) ? TRUE : FALSE;
+		if ($remover === FALSE) {
+			$p = array('curso_id' => $cProfessor, 'professor_matricula' => $idProfessor);
+
+			// checa se o professor pertence ao curso
+			if ($q->num_rows() === 0) {
+				$this->db->insert('curso_has_professor', $p);
+				return ($this->db->affected_rows() === 1) ? TRUE : FALSE;
+			}
+			else {
+				array_pop($p);
+				$this->db->update('curso_has_professor', $p, array('id' => $q->row()->id));
+				$erro = $this->db->error();
+
+				return (empty($erro['message'])) ? TRUE : FALSE;
+			}
 		}
 		else {
-			array_pop($p);
-			$this->db->update('curso_has_professor', $p, array('id' => $q->row()->id));
-			$erro = $this->db->error();
-
-			return (empty($erro['message'])) ? TRUE : FALSE;
+			$this->db->delete('curso_has_professor', array('id' => $q->row()->id));
+			return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
 		}
 	}
 }

@@ -107,11 +107,11 @@ class Professores extends CI_Controller {
 		$cursosProfessor = $this->input->post('cursos');
 		$senhaProfessor = $this->input->post('senha1');
 
-		if (!empty($senhaProfessor)) {
-			$professor['senha'] = sha1($senhaProfessor);
-		}
+		$removerCursos = $this->input->post('remover');
 
-		// envia dados editados ao model (tabela professor)
+		if (!empty($senhaProfessor)) $professor['senha'] = sha1($senhaProfessor);
+
+		// envia os dados editados ao model
 		$editaProfessor = $this->professor->editaProfessor($professor);
 
 		if ($editaProfessor) {
@@ -119,11 +119,16 @@ class Professores extends CI_Controller {
 				foreach ($cursosProfessor as $cp) {
 
 					// envia dados editados ao model (tabela curso_has_professor)
-					$resultado = $this->professor->editaCursoProfessor($cp, $professor['matricula']);
+					$resultado = $this->professor->editaCursoProfessor($cp, $professor['matricula'], FALSE);
 
-					if ($resultado !== TRUE) {
-						redirect('professores/editar?p=' . $professor['matricula'] . '&r=danger');
-					}
+					if ($resultado !== TRUE) redirect('professores/editar?p=' . $professor['matricula'] . '&r=danger');
+				}
+
+				foreach ($removerCursos as $rc) {
+					// envia dados editados ao model
+					$resultado = $this->professor->editaCursoProfessor($rc, $professor['matricula'], TRUE);
+
+					if ($resultado !== TRUE) redirect('professores/editar?p=' . $professor['matricula'] . '&r=danger');
 				}
 			}
 

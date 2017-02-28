@@ -53,29 +53,29 @@
 		<label>Cursos</label>
 
 		<?php if ($cursosProfessor !== FALSE): ?>
+			<div class="checkbox">
+				<?php foreach($cursos->result() as $c): ?>
 
-		<div class="checkbox">
-			<?php foreach($cursos->result() as $c): ?>
+					<!-- verifica se o curso pertence ao professor -->
+					<?php if (array_search($c->id, $cursosProfessor) !== FALSE): ?>
+						<label for="<?= $c->id; ?>">
+							<input type="checkbox" name="cursos[]" id="<?= $c->id; ?>" value="<?= $c->id; ?>" onchange="cursosRemovidos(this);" checked="true" /> <?= ucwords($c->nome); ?>
+						</label><br />
+					<?php else: ?>
+						<label for="<?= $c->id; ?>">
+							<input type="checkbox" name="cursos[]" id="<?= $c->id; ?>" value="<?= $c->id; ?>" /> <?= $c->nome; ?>
+						</label><br />
+					<?php endif ?>
 
-				<!-- verifica se o curso pertence ao professor -->
-				<?php if (array_search($c->id, $cursosProfessor) !== FALSE): ?>
-					<label for="<?= $c->id; ?>">
-						<input type="checkbox" name="cursos[]" id="<?= $c->id; ?>" value="<?= $c->id; ?>" checked /> <?= $c->nome; ?>
-					</label><br />
-				<?php else: ?>
-					<label for="<?= $c->id; ?>">
-						<input type="checkbox" name="cursos[]" id="<?= $c->id; ?>" value="<?= $c->id; ?>" /> <?= $c->nome; ?>
-					</label><br />
-				<?php endif ?>
-
-			<?php endforeach ?>
-		</div>
-
+				<?php endforeach ?>
+			</div>
 		<?php else: ?>
 			<div class="vermelho">Não há cursos para esse professor</div><br />
 		<?php endif ?>
 
 		<br />
+
+		<div class="checkbox" id="remover"></div>
 
 		<div class="form-group">
 			<label>Permissão</label>
@@ -101,7 +101,7 @@
 			</select>
 		</div>
 
-		<button type="submit" class="btn btn-success">Cadastrar</button>
+		<button type="submit" class="btn btn-success">Alterar</button>
 		<button type="reset" class="btn btn-default">Cancelar</button>
 	</form>
 </div>
