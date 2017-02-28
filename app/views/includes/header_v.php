@@ -55,6 +55,14 @@
                 <li><?php echo anchor("cursos?a=listar", "Listar todos"); ?></li>
               </ul>
             </li>
+
+            <li class="dropdown" onclick="subMenu(this);">
+              <a href="#" class="dropdown-toggle">Resumo <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><?php echo anchor('resumo/busca?b=aluno', 'Por aluno'); ?></li>
+                <li><?php echo anchor('resumo/busca?b=periodo', 'Por período'); ?></li>
+              </ul>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
