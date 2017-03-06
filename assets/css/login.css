@@ -16,6 +16,10 @@ body {
   margin-left: auto;
 }
 
+.altura {
+  height: 15px;
+}
+
 /* mobile */
 @media (min-width: 768px) {
   .container {
@@ -43,7 +47,7 @@ body {
   border-radius: 4px;
 }
 
-.alert-success {
+.alert-success, .alert-sent {
   color: #3c763d;
   background-color: #dff0d8;
   border-color: #d6e9c6;
@@ -53,6 +57,12 @@ body {
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;
+}
+
+.alert-danger, .alert-error {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-color: #d9534f;
 }
 
 .fade {
@@ -169,6 +179,12 @@ h3 {
 p {
   margin: 0 0 10px;
   text-align: center;
+}
+
+a {
+  font-family: inherit;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 .list-inline {

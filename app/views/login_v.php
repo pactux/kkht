@@ -1,3 +1,15 @@
+<?php
+
+  $mensagens = array(
+    'Usuário ou senha inválidos' => 'warning',
+    'Sessão encerrada com sucesso' => 'success',
+    'Enviamos a nova senha para seu E-mail' => 'sent',
+    'E-mail informado não existe' => 'danger',
+    'Falha no envio da nova senha' => 'error'
+  );
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -9,6 +21,7 @@
     <title>Login</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/login.css'); ?>" />
+    <script type="text/javascript" src="<?= base_url('assets/js/login.js'); ?>"></script>
   </head>
 
   <body>
@@ -20,16 +33,17 @@
     <div class="container">
       <form action="login/signIn" method="post" class="form-signin">
 
-        <?php if (isset($_GET['dadosIncorretos'])): ?>
-          <div class="alert alert-warning fade in"><?php echo 'Usuário ou senha inválidos'; ?></div>
-        <?php elseif (isset($_GET['logout'])): ?>
-            <div class="alert alert-success fade in"><?php echo 'Sessão encerrada com sucesso'; ?></div>
+        <?php if ($msg = array_search($dadosIncorretos, $mensagens)): ?>
+          <div class="alert alert-<?= $mensagens[$msg]; ?> fade in"><?= $msg; ?></div>
+        <?php elseif ($msg = array_search($logout, $mensagens)): ?>
+          <div class="alert alert-<?= $mensagens[$msg]; ?> fade in"><?= $msg; ?></div>
         <?php endif ?>
 
         <h2 class="form-signin-heading">Login</h2>
         <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus />
         <input type="password" name="senha" class="form-control" placeholder="Senha" required />
         <button type="submit" class="btn btn-success btn-block">Entrar</button>
+        <div id="senha"></div>
       </form>
     </div>
   </body>

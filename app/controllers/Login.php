@@ -16,7 +16,11 @@ class Login extends CI_Controller {
 
 	function index() {
 		if (array_search($this->browser, $this->browsers)) redirect('login/badbrowser');
-		$this->load->view("login_v");
+
+		$dados['dadosIncorretos'] = strtolower($this->input->get('dadosIncorretos'));
+		$dados['logout'] = strtolower($this->input->get('logout'));
+
+		$this->load->view('login_v', $dados);
 	}
 
 	function signIn() {
@@ -25,7 +29,7 @@ class Login extends CI_Controller {
 		$checaUsuario = $this->login->checaUsuario($email, sha1($senha));
 
 		if ($checaUsuario === FALSE || $checaUsuario->status === 0) {
-			redirect('login?dadosIncorretos=true', 'location', 301);
+			redirect($this->index() . '?dadosIncorretos=warning');
 		}
 		else {
 			$dadosUsuario = array(
@@ -37,18 +41,59 @@ class Login extends CI_Controller {
 			);
 
 			$this->session->set_userdata($dadosUsuario);
-			redirect('chamada', 'location', 301);
+			redirect('chamada');
 		}
 	}
 
 	function signOut() {
 		$this->session->unset_userdata('logado');
 		session_destroy();
-		redirect('login?logout=true', 'location', 301);
+		redirect($this->index() . '?logout=success');
+	}
+
+	// cria nova senha
+	function novaSenha() {
+		$this->load->helper('string');
+
+		$email = $this->input->post('email');
+
+		// checa se email existe
+		$confirmaEmail = $this->login->confirmaEmail($email);
+
+		if ($confirmaEmail) {
+			$senha = random_string('alnum', 8);
+			$alteraSenha = $this->login->alteraSenha($email, $senha);
+			$enviaEmail = $this->enviaEmail($email, $senha);
+
+			if ($enviaEmail) {
+				redirect($this->index() . '?dadosIncorretos=sent');
+			}
+			else {
+				redirect($this->index() . '?dadosIncorretos=error');
+			}
+		}
+		else {
+			redirect($this->index() . '?dadosIncorretos=danger');
+		}
+	}
+
+	// dispara email de recuperação
+	function enviaEmail($para, $senha) {
+		$this->load->library('email');
+
+		$dados = array("name" => "", "email" => "", "message_body" => $senha);
+		$mensagem = $this->load->view('email/novasenha_v', $dados, TRUE);
+
+		$this->email->from('naoresponder@example.com');
+		$this->email->to($para);
+		$this->email->subject('Nova senha de acesso');
+		$this->email->message($mensagem);
+
+		return ($this->email->send()) ? TRUE : FALSE;
 	}
 
 	function badBrowser() {
-		if (array_search($this->browser, $this->browsers) === FALSE) redirect('login');
+		if (array_search($this->browser, $this->browsers) === FALSE) redirect($this->index());
 		$this->load->view('browser_v');
 	}
 }
