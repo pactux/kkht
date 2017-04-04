@@ -1,3 +1,10 @@
+<?php 
+	$meses = array(
+		NULL, 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+		'julho', 'agosto', 'setembro',  'outubro',  'novembro',  'dezembro'
+	);
+?>
+
 <div class="container">
 	<h3><?php echo $titulo; ?></h3>
 
@@ -29,7 +36,7 @@
 			</tr>
 			<tr>
 				<td><b>Mês</b></td>
-				<td><?= (isset($result->mes)) ? $result->mes : '---'; ?></td>
+				<td><?= (isset($result->mes)) ? ucfirst($meses[$result->mes]) : '---'; ?></td>
 			</tr>
 			<tr>
 				<td><b>Ano</b></td>

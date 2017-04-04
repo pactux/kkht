@@ -33,13 +33,23 @@
 			<input type="tel" name="celular" id="celular" class="form-control" pattern="[0-9]{11,11}" maxlength="11" value="<?= $aluno->celular; ?>" required />
 		</div>
 
-		<!-- formata data -->
+		<!-- formata data nascimento -->
 		<?php $dn = explode('-', $aluno->dataNascimento); ?>
 		<?php $dn = $dn[2] . '-' . $dn[1] . '-' . $dn[0]; ?>
 
 		<div class="form-group">
 			<label for="nascimento">Data de nascimento</label>
 			<input type="text" name="nascimento" id="nascimento" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|20[0-9]{2})" maxlength="10" value="<?= $dn; ?>" required />
+		</div>
+
+		<!-- formata data cadastro -->
+		<?php $dc = strstr($aluno->dataCadastro, ' ', TRUE); ?>
+		<?php $dc = explode('-', $dc); ?>
+		<?php $dc = $dc[2] . '-' . $dc[1] . '-' . $dc[0]; ?>
+
+		<div class="form-group">
+			<label>Data da matrícula</label>
+			<input type="text" class="form-control" maxlength="10" value="<?= $dc; ?>" disabled />
 		</div>
 
 		<label>Cursos</label>
@@ -69,15 +79,16 @@
 
 		<div class="checkbox" id="remover"></div>
 
-		<?php $s = ($aluno->status === '0') ? 'Inativo' : 'Ativo'; ?>
+		<?php $s = []; ?>
+
+		<?php ($aluno->status === '0') ? array_push($s, 0, 'Inativo') : array_push($s, 1, 'Ativo'); ?>
+		<?php (in_array(1, $s)) ? array_push($s, 0, 'Inativo') : array_push($s, 1, 'Ativo'); ?>
 
 		<div class="form-group">
 			<label>Status</label>
 			<select name="status" class="form-control" required>
-				<option value="<?= $aluno->status; ?>"><?= $s; ?></option>
-				<option value=""></option>
-				<option value="1">Ativo</option>
-				<option value="0">Inativo</option>
+				<option value="<?= $s[0]; ?>"><?= $s[1]; ?></option>
+				<option value="<?= $s[2]; ?>"><?= $s[3]; ?></option>
 			</select>
 		</div>
 

@@ -90,14 +90,16 @@
 			</select>
 		</div>
 
+		<?php $s = []; ?>
+
+		<?php ($professor->status === '0') ? array_push($s, 0, 'Inativo') : array_push($s, 1, 'Ativo'); ?>
+		<?php (in_array(1, $s)) ? array_push($s, 0, 'Inativo') : array_push($s, 1, 'Ativo'); ?>
+
 		<div class="form-group">
 			<label>Status</label>
 			<select name="status" class="form-control" required>
-				<option value="<?= $professor->status; ?>"><?= ($professor->status === '1') ? 'Ativo' : 'Inativo'; ?></option>
-				<option value=""></option>
-				<option value="">Selecione</option>
-				<option value="1">Ativo</option>
-				<option value="0">Inativo</option>
+				<option value="<?= $s[0]; ?>"><?= $s[1]; ?></option>
+				<option value="<?= $s[2]; ?>"><?= $s[3]; ?></option>
 			</select>
 		</div>
 

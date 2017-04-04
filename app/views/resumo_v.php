@@ -1,3 +1,10 @@
+<?php 
+	$meses = array(
+		1 => 'janeiro', 2 => 'fevereiro', 3 => 'março', 4 => 'abril', 5 => 'maio', 6 => 'junho',
+		7 => 'julho', 8 => 'agosto', 9 => 'setembro', 10 => 'outubro', 11 => 'novembro', 12 => 'dezembro'
+	);
+?>
+
 <div class="container">
 	<h3><?= 'Busca por ' . $titulo; ?></h3>
 
@@ -22,7 +29,7 @@
 			<select name="curso" class="form-control" required>
 				<option value="">Selecione</option>
 				<?php foreach ($cursos->result() as $c): ?>
-					<option value="<?= $c->id; ?>"><?= $c->nome; ?></option>
+					<option value="<?= $c->id; ?>"><?= ucwords($c->nome); ?></option>
 				<?php endforeach ?>
 			</select>
 		</div>
@@ -32,7 +39,7 @@
 			<select name="periodo" class="form-control">
 				<option value="0">Selecione</option>
 				<?php foreach ($periodos->result() as $p): ?>
-					<option value="<?= $p->id; ?>"><?= $p->tipo; ?></option>
+					<option value="<?= $p->id; ?>"><?= ucfirst($p->tipo); ?></option>
 				<?php endforeach ?>
 			</select>
 		</div>
@@ -41,9 +48,9 @@
 			<label>Mês</label>
 			<select name="mes" class="form-control">
 				<option value="0">Selecione</option>
-				<?php for ($i = 1; $i < 13; $i += 1): ?>
-					<option value="<?= $i; ?>"><?= $i; ?></option>
-				<?php endfor ?>
+				<?php foreach ($meses as $valor => $mes): ?>
+					<option value="<?= $valor; ?>"><?= ucfirst($mes); ?></option>
+				<?php endforeach ?>
 			</select>
 		</div>
 
