@@ -5,6 +5,17 @@
 
 	<div class="dist-topo"></div>
 
+	<button class="btn btn-info btn-xs" onclick="abreFechaAjuda()">Ajuda</button>
+
+	<div class="dist-topo"></div>
+
+	<!-- exibe texto de ajuda -->
+	<div class="alert alert-info fade in hidden ajuda">
+		<a href="#" class="close" onclick="fechaAlerta(this);">&times;</a> <?php echo $ajuda['texto']; ?>
+	</div>
+
+	<div class="dist-topo"></div>
+
 	<!-- exibe alerta HTML -->
 	<?php if ($msg = array_search($resp, $mensagens)): ?>
 		<div class="alert alert-<?= $mensagens[$msg]; ?> fade in">
@@ -37,7 +48,7 @@
 				<tr>
 					<th>Curso</th>
 					<th>Status</th>
-					<th>#</th>
+					<th>Alterar</th>
 				</tr>
 				<?php foreach ($conteudo->result() as $exibe): ?>
 					<?php ($exibe->status == 0) ? $status = 'Inativo' : $status = 'Ativo'; ?>

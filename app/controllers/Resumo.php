@@ -5,6 +5,8 @@
 */
 
 class Resumo extends CI_Controller {
+	private $titulo_ajuda = array();
+
 	function __construct() {
 		parent::__construct();
 		$this->login->checaSessao();
@@ -15,6 +17,7 @@ class Resumo extends CI_Controller {
 		$this->load->model('Resumo_m', 'resumo');
 		$this->load->model('Cursos_m', 'cursos');
 		$this->load->model('Chamada_m', 'chamada');
+		$this->load->model('Ajuda_m', 'ajuda');
 
 		$this->load->view('includes/header_v');
 	}
@@ -24,12 +27,13 @@ class Resumo extends CI_Controller {
 		$resp = $this->input->get('r');
 		$tipoBusca = $this->input->get('b');
 
-		if ($tipoBusca === 'periodo' || isset($resp)) $titulo = 'período';
-		elseif ($tipoBusca === 'aluno') $titulo = 'aluno';
+		if ($tipoBusca === 'periodo' || isset($resp)) array_push($this->titulo_ajuda, 'período', 5);
+		elseif ($tipoBusca === 'aluno') array_push($this->titulo_ajuda, 'aluno', 4);
 		else show_404();
 
 		$dados['resp'] = $resp;
-		$dados['titulo'] = $titulo;
+		$dados['titulo'] = $this->titulo_ajuda[0];
+		$dados['ajuda'] = $this->ajuda->buscaAjuda($this->titulo_ajuda[1]);
 		$dados['tipoBusca'] = $tipoBusca;
 		$dados['cursos'] = $this->cursos->listaPorStatus(1);
 		$dados['periodos'] = $this->chamada->listaPeriodos();

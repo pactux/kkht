@@ -15,6 +15,7 @@ class Alunos extends CI_Controller {
 		$this->load->view('includes/header_v');
 		$this->load->model('Cursos_m', 'cursos');
 		$this->load->model('Alunos_m', 'alunos');
+		$this->load->model('Ajuda_m', 'ajuda');
 	}
 
 	// monta página de cadastro
@@ -62,6 +63,7 @@ class Alunos extends CI_Controller {
 
 	function listaCursos() {
 		$dados['titulo'] = 'Todos os Cursos';
+		$dados['ajuda'] = $this->ajuda->buscaAjuda(1);
 		$dados['resp'] = $this->input->get('r');
 		$dados['cursos'] = $this->cursos->listaPorStatus(1);
 

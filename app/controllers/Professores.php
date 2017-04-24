@@ -15,6 +15,7 @@ class Professores extends CI_Controller {
 		$this->load->view('includes/header_v');
 		$this->load->model('Cursos_m', 'cursos');
 		$this->load->model('Professores_m', 'professor');
+		$this->load->model('Ajuda_m', 'ajuda');
 	}
 
 	// página de cadastro
@@ -142,6 +143,7 @@ class Professores extends CI_Controller {
 	// página que exibe a lista de professores
 	function lista() {
 		$dados['titulo'] = 'Professores';
+		$dados['ajuda'] = $this->ajuda->buscaAjuda(2);
 		$dados['professores'] = $this->professor->listaProfessores($this->usuario['permissao']);
 
 		$this->load->view('lista_professores_v', $dados);

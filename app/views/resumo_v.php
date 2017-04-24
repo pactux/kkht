@@ -10,6 +10,17 @@
 
 	<div class="dist-topo"></div>
 
+	<button class="btn btn-info btn-xs" onclick="abreFechaAjuda()">Ajuda</button>
+
+	<div class="dist-topo"></div>
+
+	<!-- exibe texto de ajuda -->
+	<div class="alert alert-info fade in hidden ajuda">
+		<a href="#" class="close" onclick="fechaAlerta(this);">&times;</a> <?php echo $ajuda['texto']; ?>
+	</div>
+
+	<div class="dist-topo"></div>
+
 	<?php if (isset($resp)): ?>
 		<div class="alert alert-danger fade in">
 			Erro: busca não realizada <a href="#" class="close" onclick="fechaAlerta(this);">&times;</a>
