@@ -25,6 +25,7 @@ class Cursos extends CI_Controller {
 		if ($acao === 'cadastrar') {
 			$dados['titulo'] = 'Novo Curso';
 			$dados['request'] = 'cadastrar';
+			$dados['ajuda'] = $this->ajuda->buscaAjuda(7);
 			$this->load->view("cursos_v", $dados);
 		}
 		elseif ($acao === 'listar') {
