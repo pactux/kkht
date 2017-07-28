@@ -172,3 +172,18 @@ function salvaChamada($form) {
   $testa = window.confirm('Finalizar chamada?');
   ($testa === true) ? $form.action = $form.action : $form.action = '#';
 }
+
+// confirma a execução de uma ação
+function executaAcao() {
+  var $resposta = document.getElementsByClassName('resposta');
+  var $executa = window.confirm('Prosseguir com ação?');
+
+  if ($executa === true) {
+    return true;
+  }
+  else {
+    $resposta[0].classList.remove('hidden');
+    $resposta[0].innerText = 'Ação não executada';
+    return false;
+  }
+}

@@ -25,11 +25,16 @@ class Alunos_m extends CI_Model {
 		return ($this->db->affected_rows() === 1) ? TRUE : FALSE;
 	}
 
-	function listaAlunos($curso) {
+	function listaAlunos($curso, $alunoStatus = NULL) {
 		$this->db->select('matricula, aluno.nome, aluno.status');
 		$this->db->join('curso', 'curso.id = curso_has_aluno.curso_id', 'inner');
 		$this->db->join('aluno', 'aluno.matricula = curso_has_aluno.aluno_matricula', 'inner');
 		$this->db->order_by('aluno.status DESC, aluno.nome ASC');
+
+		// pesquisa pelo status do aluno (parametro opcional)
+		if ($alunoStatus !== NULL) {
+			$this->db->where('aluno.status', $alunoStatus);
+		}
 
 		$alunos = $this->db->get_where('curso_has_aluno', array('curso_id' => $curso, 'curso.status' => 1));
 

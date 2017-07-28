@@ -67,6 +67,15 @@
                 </ul>
               </li>
 
+              <li class="dropdown" onclick="subMenu(this);">
+                <a href="#" class="dropdown-toggle">Pagamentos <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><?= anchor('pagamentos/gerarlista', 'Gerar lista'); ?></li>
+                  <li><?= anchor('pagamentos/atual', 'Verificar pagamentos'); ?></li>
+                  <li><?= anchor('pagamentos/historico', 'Pesquisar anteriores'); ?></li>
+                </ul>
+              </li>
+
             <?php endif ?>
           </ul>
 

@@ -19,3 +19,7 @@ body {
 .inativo {
 	background: lightcoral;
 }
+
+.pago {
+	background: lightgreen;
+}
