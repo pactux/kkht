@@ -15,9 +15,7 @@
 	<div class="dist-topo"></div>
 
 	<!-- exibe texto de ajuda -->
-	<div class="alert alert-info fade in hidden ajuda">
-		<a href="#" class="close" onclick="fechaAlerta(this);">&times;</a> <?php echo $ajuda['texto']; ?>
-	</div>
+	<div class="alert alert-info fade in hidden ajuda"><?php echo $ajuda['texto']; ?></div>
 
 	<div class="dist-topo"></div>
 
