@@ -1,7 +1,14 @@
 <div class="container">
 	<h3><?php echo $titulo; ?></h3>
 
-	<p>Escolha um curso para visualizar os alunos</p>
+	<div class="dist-topo"></div>
+
+	<button class="btn btn-info btn-xs" onclick="abreFechaAjuda()">Ajuda</button>
+
+	<div class="dist-topo"></div>
+
+	<!-- exibe texto de ajuda -->
+	<div class="alert alert-info fade in hidden ajuda"><?php echo $ajuda['texto']; ?></div>
 
 	<div class="dist-topo"></div>
 

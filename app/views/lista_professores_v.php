@@ -3,6 +3,15 @@
 
 	<div class="dist-topo"></div>
 
+	<button class="btn btn-info btn-xs" onclick="abreFechaAjuda()">Ajuda</button>
+
+	<div class="dist-topo"></div>
+
+	<!-- exibe texto de ajuda -->
+	<div class="alert alert-info fade in hidden ajuda"><?php echo $ajuda['texto']; ?></div>
+
+	<div class="dist-topo"></div>
+
 	<!-- exibe alerta HTML -->
 	<?php if (isset($_GET['r'])): ?>
 		<?php if ($_GET['r'] === 'false'): ?>

@@ -20,7 +20,15 @@ function subMenu($menu) {
 }
 
 function fechaAlerta($tag) {
-	$tag.parentNode.hidden = 'true';
+	$tag.parentNode.classList.add('hidden');
+}
+
+// exibe/esconde as janelas de ajuda
+function abreFechaAjuda () {
+  var $ajuda = document.getElementsByClassName('ajuda');
+  var $existe = $ajuda[0].classList.contains('hidden');
+
+  ($existe === true) ? $ajuda[0].classList.remove('hidden') : $ajuda[0].classList.add('hidden');
 }
 
 // funcionamento dos campos de senha

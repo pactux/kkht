@@ -14,6 +14,7 @@ class Cursos extends CI_Controller {
 
 		$this->load->view("includes/header_v");
 		$this->load->model('Cursos_m', 'curso');
+		$this->load->model('Ajuda_m', 'ajuda');
 	}
 
 	// define o conteudo que será exibido na página (request)
@@ -24,11 +25,13 @@ class Cursos extends CI_Controller {
 		if ($acao === 'cadastrar') {
 			$dados['titulo'] = 'Novo Curso';
 			$dados['request'] = 'cadastrar';
+			$dados['ajuda'] = $this->ajuda->buscaAjuda(7);
 			$this->load->view("cursos_v", $dados);
 		}
 		elseif ($acao === 'listar') {
 			$dados['titulo'] = 'Todos os cursos';
 			$dados['request'] = 'listar';
+			$dados['ajuda'] = $this->ajuda->buscaAjuda(3);
 			$dados['conteudo'] = $this->curso->lista();
 			$this->load->view("cursos_v", $dados);
 		}
