@@ -18,9 +18,7 @@
 
 	<div class="dist-topo"></div>
 
-	<div class="alert alert-info fade in hidden ajuda">
-		Criar classe de ajuda e colocar ajuda em métodos PHP <a href="#" class="close" onclick="fechaAlerta(this);">&times;</a>
-	</div>
+	<div class="alert alert-info fade in hidden ajuda"><?php echo $ajuda['texto']; ?></div>
 
 	<div class="dist-topo"></div>
 

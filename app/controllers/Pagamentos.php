@@ -27,6 +27,7 @@ class Pagamentos extends CI_Controller {
 		$this->load->model('Cursos_m', 'cursos');
 		$this->load->model('Alunos_m', 'alunos');
 		$this->load->model('Pagamentos_m', 'pagamentos');
+		$this->load->model('Ajuda_m', 'ajuda');
 	}
 
 	// repopula tabela de pagamentos
@@ -55,6 +56,7 @@ class Pagamentos extends CI_Controller {
 		$this->dados['titulo'] = 'Busca pagamentos';
 		$this->dados['resp'] = $this->input->get('r');
 		$this->dados['cursos'] = $this->cursos->listaPorStatus(1);
+		$this->dados['ajuda'] = $this->ajuda->buscaAjuda(6);
 
 		$this->load->view('busca_pagamentos_atual_v', $this->dados);
 	}
@@ -101,6 +103,7 @@ class Pagamentos extends CI_Controller {
 		$this->dados['cursos'] = $this->cursos->listaPorStatus(1);
 		$this->dados['meses'] = $this->listaMeses();
 		$this->dados['anos'] = $this->anosAnteriores();
+		$this->dados['ajuda'] = $this->ajuda->buscaAjuda(8);
 
 		$this->load->view('busca_pagamentos_historico_v', $this->dados);
 	}
