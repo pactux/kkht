@@ -195,3 +195,8 @@ function executaAcao() {
     return false;
   }
 }
+
+window.onload = function() {
+  // insere titulo no app
+  return document.title = 'KKHT - ' + document.getElementsByTagName('h3')[0].innerText;
+}
