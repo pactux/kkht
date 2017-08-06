@@ -9,16 +9,6 @@
 
 	<div class="dist-topo"></div>
 
-	<button class="btn btn-info btn-xs" onclick="abreFechaAjuda()">Ajuda</button>
-
-	<div class="dist-topo"></div>
-
-	<div class="alert alert-info fade in hidden ajuda">
-		Criar classe de ajuda e colocar ajuda em métodos PHP <a href="#" class="close" onclick="fechaAlerta(this);">&times;</a>
-	</div>
-
-	<div class="dist-topo"></div>
-
 	<?php if ($alunos !== FALSE): ?>
 		<form action="./processaAtual?c=<?= $curso; ?>" method="post">
 			<center>
