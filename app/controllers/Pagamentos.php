@@ -40,7 +40,8 @@ class Pagamentos extends CI_Controller {
 			$this->geraNovaLista = $this->pagamentos->novaLista();
 
 			if ($this->geraNovaLista) {
-				$this->dados['resp'] = "<div class='alert alert-success fade in'>Lista gerada com sucesso!</div>";
+				$this->dados['resp'] = "<style type='text/css'> .btn.btn-success { display: none; } </style>";
+				$this->dados['resp'] .= "<div class='alert alert-success fade in'>Lista gerada com sucesso!</div>";
 			}
 			else {
 				$this->dados['resp'] = "<div class='alert alert-danger fade in'>Erro! Contate o Admin do sistema</div>";

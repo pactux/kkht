@@ -50,6 +50,7 @@ class Pagamentos_m extends CI_Model {
 		$this->db->select('curso_has_aluno.aluno_matricula, aluno.nome, pagamentos.id');
 		$this->db->join('pagamentos', 'pagamentos.curso_has_aluno_id = curso_has_aluno.id');
 		$this->db->join('aluno', 'aluno.matricula = curso_has_aluno.aluno_matricula');
+		$this->db->where('aluno.status', 1);
 		$this->db->where('pagamentos.mesPagamento', $mes);
 		$this->db->where('pagamentos.anoPagamento', $ano);
 		$this->db->where('curso_has_aluno.curso_id', $curso);
